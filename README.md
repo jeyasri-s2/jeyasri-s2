@@ -10,11 +10,11 @@ Throughout my career, I’ve led teams to success by making key design decisions
 I began my career as a Java programmer and later expanded into mobile application development for both Android and iOS. In 2014, I developed cross-platform applications using HTML5, CSS3, and jQuery. Currently, I’m working as an Applied Scientist, leading AI/ML research projects that involve dataset preparation, data cleaning, programming with PyTorch and TensorFlow, deploying pipelines on AWS and Azure, and conducting performance evaluations.
 
 ## Projects
-1. **Project 1**: [GitHub Link](https://github.com/jeyasri-s2/project1)
-   - A description of what this project does.
+1. **CA Reservoir outflow prediction**: [GitHub Link]([https://github.com/jeyasri-s2/CA-Reservoir-Outflow-Prediction])
+   -  This project collected a decade of water level in all reservior in California. I used Apache Hadoop to clean and reduce the volume from 100GM to 10MB for running ML algorithm. I utilized Facebook's Phophet model to predict the water level in reservior.
    
-2. **Project 2**: [GitHub Link](https://github.com/jeyasri-s2/project2)
-   - A description of this project.
+2. **Hand Gesture Recognition**: [GitHub Link]([https://github.com/jeyasri-s2/HandGestureRecognition])
+   - Developed custom dataset for hand gresture recognition. Using Mediapipe to detect hand gesture from live video/ recorded video.
 
 ## Contact
 You can reach me at [jeyasriss@gmail.com](mailto:jeyasriss@gmail.com) or through my [LinkedIn](https://www.linkedin.com/in/jeyasri-subramanian).
