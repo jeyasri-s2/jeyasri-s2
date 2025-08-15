@@ -72,3 +72,8 @@ footer {
     color: #fff;
     margin-top: 20px;
 }
+
+.profile-photo {
+    float: right;
+    margin-left: 20px;
+}
