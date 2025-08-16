@@ -80,7 +80,8 @@ footer {
 }
 
 .about-content p {
-    flex: 1; /* Allows the paragraph to take up available space */
+    flex: 1;
+    line-height: 1.8; /* Increased line height for better readability */
 }
 
 .profile-photo {
