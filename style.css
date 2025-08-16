@@ -73,7 +73,17 @@ footer {
     margin-top: 20px;
 }
 
+.about-content {
+    display: flex;
+    align-items: flex-start; /* Aligns items to the start of the cross axis (top) */
+    gap: 25px; /* Adds space between the paragraph and the image */
+}
+
+.about-content p {
+    flex: 1; /* Allows the paragraph to take up available space */
+}
+
 .profile-photo {
-    float: right;
-    margin-left: 20px;
+    /* float: right; */ /* Remove float as flexbox will handle positioning */
+    /* margin-left: 20px; */ /* Adjust margin with gap property on parent */
 }
