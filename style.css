@@ -47,7 +47,7 @@
     display:grid;
     grid-template-columns:300px 1fr;
     gap:0;
-    max-width:var(--maxw);
+    // max-width:var(--maxw);
     margin:0 auto;
   }
   aside.rail{
@@ -211,7 +211,7 @@
     margin-bottom:22px;
   }
   .lede{
-    max-width:62ch;
+    //max-width:62ch;
     font-size:1.02rem;
   }
   .lede + .lede{ margin-top:14px; }
