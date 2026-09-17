@@ -1,39 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeyasri - Projects</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Jeyasri S</title>
+<meta name="description" content="Selected AI/ML projects by Jeyasri S — GenAI, LLMs, Computer Vision, NLP and Reinforcement Learning shipped to production.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF8F3;
+    --paper-raised:#F1EDE2;
+    --ink:#17181A;
+    --ink-soft:#54564E;
+    --ink-faint:#918D80;
+    --rule:#E1DBC9;
+    --sapphire:#1F5C4A;
+    --sapphire-tint:#E1EBE6;
+    --gold:#AC8A4E;
+    --gold-tint:#EFE6D2;
+    --rail-bg:#12201C;
+    --rail-raised:#1B2E27;
+    --rail-rule:rgba(225,235,230,0.14);
+    --rail-text:#F0EDE4;
+    --rail-text-soft:#9BAFA5;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans", -apple-system, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--sapphire);}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+  .mono{font-family:"IBM Plex Mono", monospace;}
+  h1,h2,h3{
+    font-family:"Space Grotesk", sans-serif;
+    font-weight:700;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  .shell{
+    display:grid;
+    grid-template-columns:300px 1fr;
+    gap:0;
+    max-width:var(--maxw);
+    margin:0 auto;
+  }
+  aside.rail{
+    position:sticky;
+    top:0;
+    align-self:start;
+    height:100vh;
+    padding:40px 28px 28px;
+    display:flex;
+    flex-direction:column;
+    background:var(--rail-bg);
+    background-image:radial-gradient(rgba(240,237,228,0.07) 1px, transparent 1px);
+    background-size:14px 14px;
+    color:var(--rail-text);
+  }
+  main{
+    padding:40px 0 80px;
+    min-width:0;
+  }
+
+  .photo-frame{
+    width:100%;
+    aspect-ratio:1/1;
+    border:1px solid var(--rail-rule);
+    background:var(--rail-raised);
+    margin-bottom:18px;
+    overflow:hidden;
+    position:relative;
+    box-shadow:0 14px 34px -18px rgba(0,0,0,0.55);
+  }
+  .photo-frame img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .photo-fallback{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.6rem;
+    color:var(--rail-text-soft);
+    letter-spacing:0.04em;
+  }
+  .photo-tag{
+    position:absolute;
+    right:0;
+    bottom:0;
+    background:var(--gold);
+    color:var(--rail-bg);
+    font-size:0.62rem;
+    letter-spacing:0.04em;
+    padding:4px 8px;
+  }
+  .rail .name{ font-size:1.5rem; line-height:1.15; color:var(--rail-text); }
+  .rail .role{ margin-top:6px; font-size:0.95rem; color:var(--rail-text-soft); }
+  .rail .loc{ margin-top:14px; font-size:0.8rem; color:var(--rail-text-soft); }
+  .rail .badge{ margin-top:10px; font-size:0.74rem; color:var(--gold); }
+  nav.index{ margin-top:36px; }
+  nav.index a{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    padding:7px 0 7px 12px;
+    margin-left:-12px;
+    color:var(--rail-text-soft);
+    text-decoration:none;
+    font-size:0.92rem;
+    border-left:2px solid transparent;
+    transition:border-color 0.15s ease, color 0.15s ease;
+  }
+  nav.index a .n{ font-size:0.72rem; color:var(--rail-text-soft); width:16px; }
+  nav.index a:hover, nav.index a.active{ color:var(--rail-text); }
+  nav.index a.active{ border-left-color:var(--gold); }
+  nav.index a.active .n{ color:var(--gold); }
+
+  .rail .stats{
+    margin-top:auto;
+    padding-top:28px;
+    border-top:1px solid var(--rail-rule);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px 12px;
+  }
+  .rail .stat b{
+    display:block;
+    font-family:"Space Grotesk", sans-serif;
+    font-size:1.35rem;
+    color:var(--gold);
+  }
+  .rail .stat span{ font-size:0.72rem; color:var(--rail-text-soft); line-height:1.3; }
+  .rail .actions{ margin-top:24px; display:flex; flex-direction:column; gap:8px; }
+  .btn{
+    display:inline-block;
+    text-align:center;
+    padding:10px 14px;
+    border:1px solid var(--rail-rule);
+    color:var(--rail-text);
+    text-decoration:none;
+    font-size:0.85rem;
+    font-family:"IBM Plex Mono", monospace;
+  }
+  .btn.primary{ background:var(--gold); border-color:var(--gold); color:var(--rail-bg); }
+  .btn:hover{ background:var(--rail-text); border-color:var(--rail-text); color:var(--rail-bg); }
+  .btn.primary:hover{ background:var(--gold-tint); border-color:var(--gold-tint); color:var(--rail-bg); }
+
+  section{ padding:52px 32px 8px; }
+  .eyebrow{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.75rem;
+    color:var(--ink-faint);
+    margin-bottom:6px;
+  }
+  section h2{
+    font-family:"Fraunces", serif;
+    font-weight:600;
+    font-optical-sizing:auto;
+    font-size:2rem;
+    margin-bottom:14px;
+  }
+  .lede{ max-width:62ch; font-size:1.02rem; color:var(--ink-soft); }
+
+  .tagset{ display:flex; flex-wrap:wrap; gap:7px; }
+  .tagset span{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.76rem;
+    padding:4px 9px;
+    border:1px solid var(--rule);
+    background:var(--paper-raised);
+    color:var(--ink-soft);
+    transition:border-color 0.15s ease, color 0.15s ease;
+  }
+  .tagset span:hover{ border-color:var(--sapphire); color:var(--ink); }
+
+  .project-grid{
+    margin-top:36px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    border-left:1px solid var(--rule);
+    border-top:1px solid var(--rule);
+  }
+  .project{
+    padding:26px 24px;
+    border-right:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+  }
+  .project h3{ font-size:1.08rem; font-weight:600; max-width:34ch; }
+  .project .impact{
+    margin-top:8px;
+    font-size:0.82rem;
+    color:var(--gold);
+    font-family:"IBM Plex Mono", monospace;
+  }
+  .project p.desc{
+    margin:12px 0 14px;
+    font-size:0.92rem;
+    color:var(--ink-soft);
+  }
+
+  .demo{
+    margin-top:14px;
+    aspect-ratio:16/9;
+    background:var(--rail-bg);
+    overflow:hidden;
+    border:1px solid var(--rule);
+  }
+  .demo video{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    background:var(--rail-bg);
+  }
+
+  footer{ padding:26px 32px 40px; font-size:0.76rem; color:var(--ink-faint); }
+
+  @media (max-width: 880px){
+    .shell{ grid-template-columns:1fr; }
+    aside.rail{
+      position:relative;
+      height:auto;
+      padding:28px 28px 24px;
+    }
+    .rail .stats{ margin-top:24px; padding-top:20px; }
+    section{ padding:40px 20px 4px; }
+    .project-grid{ grid-template-columns:1fr; }
+  }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+</style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">About Me</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section id="projects">
-        <h1>Projects</h1>
+<div class="shell">
+  <aside class="rail">
+    <div>
+      <div class="photo-frame">
+        <img src="images/photo.jpg" alt="Jeyasri S" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="photo-fallback mono" style="display:none;">JS</div>
+        <div class="photo-tag mono">SINCE 2010</div>
+      </div>
+      <div class="name">Jeyasri S</div>
+      <div class="role">Staff Machine Learning Engineer</div>
+      <div class="loc mono">Tamil Nadu, India</div>
+      <div class="badge mono">● Open to opportunities in India</div>
+    </div>
+
+    <nav class="index" id="nav">
+      <a href="index.html#about"><span class="n mono">01</span>About</a>
+      <a href="index.html#experience"><span class="n mono">02</span>Experience</a>
+      <a href="projects.html" class="active"><span class="n mono">03</span>Projects</a>
+      <a href="index.html#skills"><span class="n mono">04</span>Skills</a>
+      <a href="index.html#publications"><span class="n mono">05</span>Publications &amp; Patents</a>
+      <a href="index.html#education"><span class="n mono">06</span>Education</a>
+      <a href="index.html#contact"><span class="n mono">07</span>Contact</a>
+    </nav>
+
+    <div class="stats">
+      <div class="stat"><b>15+</b><span>years in production ML</span></div>
+      <div class="stat"><b>2</b><span>US patents granted</span></div>
+      <div class="stat"><b>3</b><span>clouds — AWS / GCP / Azure</span></div>
+      <div class="stat"><b>1</b><span>ICCV publication</span></div>
+    </div>
+
+    <div class="actions">
+      <a class="btn primary" href="resume.pdf" download>Download résumé (PDF)</a>
+      <a class="btn" href="mailto:jeyasriss@gmail.com">Email me</a>
+    </div>
+  </aside>
+
+  <main>
+    <section>
+      <div class="eyebrow mono">03 / Projects</div>
+      <h2>Projects</h2>
+      <p class="lede">A selection of production systems and research work spanning generative AI, computer vision, and reinforcement learning — most shipped to real users, one published at ICCV.</p>
+
+      <div class="project-grid">
+
         <div class="project">
-            <h2>Project 1</h2>
-            <p>Description of the project. Technologies used: HTML, CSS, JavaScript, React, etc.</p>
-            <a href="https://github.com/yourusername/project1" target="_blank">View on GitHub</a>
+          <h3>Real-time financial decisioning API</h3>
+          <div class="impact">35% latency reduction · 5K+ active users</div>
+          <p class="desc">Migrated legacy Java APIs to Python FastAPI at USAA, integrating ML models directly into the request path for real-time savings and Fixed Deposit advisory decisions, and automating previously manual advisory workflows.</p>
+          <div class="tagset"><span>Python</span><span>FastAPI</span><span>Java</span><span>Financial ML</span></div>
         </div>
+
         <div class="project">
-            <h2>Project 2</h2>
-            <p>Description of the project. Technologies used: Node.js, Express, MongoDB, etc.</p>
-            <a href="https://github.com/yourusername/project2" target="_blank">View on GitHub</a>
+          <h3>LLM-powered task-guidance system</h3>
+          <div class="impact">80% reduction in manual workflow steps</div>
+          <p class="desc">Built a LLaMA-based system that guides users step-by-step through repetitive internal workflows, replacing manual documentation lookup with contextual, model-generated guidance.</p>
+          <div class="tagset"><span>LLaMA</span><span>LLM</span><span>Prompt Engineering</span><span>RAG</span></div>
         </div>
-        <!-- Add more projects here -->
+
+        <div class="project">
+          <h3>CNN-based occlusion detection</h3>
+          <div class="impact">40% improvement in selfie image quality</div>
+          <div class="demo">
+            <video controls preload="metadata" playsinline>
+              <source src="videos/occlusion-detection.mp4" type="video/mp4">
+              Your browser doesn't support embedded video.
+            </video>
+          </div>
+          <p class="desc">Designed and optimized a convolutional neural network to detect facial occlusion in selfie captures, feeding into a downstream quality-scoring pipeline used in production.</p>
+          <div class="tagset"><span>PyTorch</span><span>CNN</span><span>Computer Vision</span></div>
+        </div>
+
+        <div class="project">
+          <h3>YOLO object-detection pipeline</h3>
+          <div class="impact">Contributed to 10% revenue growth</div>
+          <div class="demo">
+            <video controls preload="metadata" playsinline>
+              <source src="videos/yolo-detection.mp4" type="video/mp4">
+              Your browser doesn't support embedded video.
+            </video>
+          </div>
+          <p class="desc">Deployed YOLO-based object-detection models into a downstream production system, improving detection performance and unlocking a measurable revenue impact.</p>
+          <div class="tagset"><span>YOLO</span><span>Computer Vision</span><span>AWS</span></div>
+        </div>
+
+        <div class="project">
+          <h3>Fraud detection in a simulated stock market</h3>
+          <div class="impact">Detected dark-pool trading anomalies</div>
+          <p class="desc">Built PPO and DQN reinforcement-learning agents inside an artificial stock-market simulation to identify patterns consistent with fraudulent dark-pool activity.</p>
+          <div class="tagset"><span>Reinforcement Learning</span><span>PPO</span><span>DQN</span></div>
+        </div>
+
+        <div class="project">
+          <h3>STRIVE: scene text replacement in video</h3>
+          <div class="impact">Published — ICCV 2021</div>
+          <div class="demo">
+            <video controls preload="metadata" playsinline>
+              <source src="videos/strive-scene-text.mp4" type="video/mp4">
+              Your browser doesn't support embedded video.
+            </video>
+          </div>
+          <p class="desc">Proposed a style-transfer method that replaces on-screen text in video while preserving the original appearance and motion characteristics of the scene.</p>
+          <div class="tagset"><span>Style Transfer</span><span>Computer Vision</span><span>Research</span></div>
+        </div>
+
+        <div class="project">
+          <h3>Multilingual video emotion recognition</h3>
+          <div class="impact">65% classification accuracy</div>
+          <p class="desc">Trained EfficientNet-based classifiers for emotion recognition across multilingual video content, with systematic hyperparameter tuning to improve accuracy across languages.</p>
+          <div class="tagset"><span>EfficientNet</span><span>Computer Vision</span><span>Multilingual</span></div>
+        </div>
+
+        <div class="project">
+          <h3>Video-design automation platform</h3>
+          <div class="impact">60% reduction in manual effort</div>
+          <div class="demo">
+            <video controls preload="metadata" playsinline>
+              <source src="videos/video-automation.mp4" type="video/mp4">
+              Your browser doesn't support embedded video.
+            </video>
+          </div>
+          <p class="desc">Built a ReactJS and Python platform that automates preprocessing and repetitive steps in video-design workflows, cutting manual effort for the design team.</p>
+          <div class="tagset"><span>ReactJS</span><span>Python</span><span>Automation</span></div>
+        </div>
+
+      </div>
     </section>
 
-    <footer>
-        <p>&copy; 2025 Jeyasri Subramanian. All rights reserved.</p>
-    </footer>
+    <footer>© 2026 Jeyasri S. <a href="index.html">Back to overview</a></footer>
+  </main>
+</div>
+
 </body>
 </html>
